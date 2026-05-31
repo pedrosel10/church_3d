@@ -1,14 +1,8 @@
 ---
 deployment:
   tasks:
-    # 1. Instala as dependências (certifique-se de que o Node.js está habilitado na hospedagem)
-    - npm install
-    
-    # 2. Roda o build do Vite
-    - npm run build
-    
-    # 3. Cria a pasta destino caso não exista
+    # 1. Cria a pasta destino caso não exista
     - mkdir -p $HOME/public_html/church
     
-    # 4. Copia os arquivos gerados na pasta 'dist' para a pasta pública do cPanel
+    # 2. Copia os arquivos pré-compilados da pasta 'dist' (agora no Git) para a pasta pública
     - /bin/cp -R dist/* $HOME/public_html/church/
