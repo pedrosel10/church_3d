@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    min-height: 600vh; /* 600vh para permitir 2 fases de scroll */
+    background-color: #ffffff;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    pointer-events: auto; /* Permite interações no canvas */
+}
+
+/* ── Vignette / edge blur overlay ──────────────────────────────────── */
+.vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    /* Radial gradient: transparent center → soft dark edges */
+    background: radial-gradient(
+        ellipse 70% 65% at 50% 50%,
+        transparent 55%,
+        rgba(200, 200, 200, 0.25) 80%,
+        rgba(160, 160, 160, 0.5) 100%
+    );
+}
+
+/* ── Loader ────────────────────────────────────────────────────────── */
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+}
+
+.loader-text {
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    font-weight: 300;
+    color: #111;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.loader-progress {
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 0.1em;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ── Background Text Parallax ──────────────────────────────────────── */
+#bg-text {
+    position: fixed;
+    top: 40%;
+    transform: translateY(-50%) translateX(100vw);
+    white-space: nowrap;
+    font-size: clamp(8rem, 20vw, 25rem);
+    font-weight: 100;
+    color: #000000;
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+}
+
+/* ── White Overlay Phase 2 ─────────────────────────────────────────── */
+#white-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #ffffff;
+    z-index: 6; /* Acima do canvas(5), abaixo do texto(10) */
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── Bottom Content ────────────────────────────────────────────────── */
+#bottom-content {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#bottom-h1 {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #111;
+    margin: 0;
+    line-height: 1.2;
+    max-width: 40vw;
+}
+
+#bottom-h2 {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #444;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 35vw;
+    text-align: right;
+}

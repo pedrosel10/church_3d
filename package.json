@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "lil-gui": "^0.21.0",
+    "three": "^0.184.0",
+    "three-mesh-bvh": "^0.9.10",
+    "vite": "^8.0.14"
+  },
+  "name": "estudo-3d-igreja",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
