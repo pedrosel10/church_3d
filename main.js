@@ -13,7 +13,11 @@ const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 500);
 const dpr = Math.min(window.devicePixelRatio, 2);
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ 
+    antialias: true, 
+    canvas: canvas,
+    powerPreference: "high-performance"
+});
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(dpr);
 renderer.shadowMap.enabled = true;
@@ -87,7 +91,8 @@ scene.add(hemiLight);
 const keyLight = new THREE.DirectionalLight(params.keyColor, params.keyIntensity);
 keyLight.position.set(params.keyX, params.keyY, params.keyZ);
 keyLight.castShadow = true;
-keyLight.shadow.mapSize.set(params.shadowMapSize, params.shadowMapSize);
+keyLight.shadow.mapSize.width = 1024; // Otimizado de 4096 para 1024 para melhor FPS
+keyLight.shadow.mapSize.height = 1024;
 keyLight.shadow.camera.near = 0.5;
 keyLight.shadow.camera.far = 150;
 const sd = 35;
